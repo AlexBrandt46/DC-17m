@@ -3,6 +3,7 @@
 
 const int buttonPin = 8;
 const int ledPin = 9;
+const int buzzPin = 7;
 
 int firingState = 0;
 
@@ -14,6 +15,7 @@ void setup() {
   Serial.println("starting");
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(buzzPin, OUTPUT);
 }
 
 void loop() {
@@ -26,10 +28,12 @@ void loop() {
     magAmmo -= 1;
     Serial.println(magAmmo);
     digitalWrite(ledPin, HIGH);
+    digitalWrite(buzzPin, HIGH);
     delay(100);
-  }
+  } 
   else if (firingState == LOW) {
     digitalWrite(ledPin, LOW);
+    digitalWrite(buzzPin, LOW);
   }
 
   // Do auto reload for now only if the magazine's completely empty
